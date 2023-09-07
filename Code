@@ -1,0 +1,42 @@
+-- view entire dataset
+
+SELECT *
+FROM Crime.data
+
+-- Question 1: What overall trends do you see in violent crime rates versus property crime rates over this time period?
+-- Round the averages for both violent crime rates and property crime rates (Violent vs Property)
+SELECT 
+  Year,
+  ROUND(AVG(Violent_crime_rate), 2) AS Avg_Violent_Crime_Rate,
+  ROUND(AVG(Property_crime_rate), 2) AS Avg_Property_Crime_Rate
+FROM Crime.data
+GROUP BY Year
+ORDER BY Year;
+
+-- Question 2: Are certain crime types increasing or decreasing? (Increasing or Decreasing)
+-- Find the crime rates for each crime per year
+SELECT Year, Violent_crime_rate, Murder_rate, Robbery_rate, Aggravated_assault_rate, Property_crime_rate, Burglary_rate, Larceny_theft_rate, Motor_vehicle_theft_rate
+FROM Crime.data
+ORDER BY Year ASC 
+
+
+-- Question 3: Is there a relationship between population size and crime rates for different crime types? (Population and rates)
+
+SELECT Year, Population, Violent_crime_rate, Murder_rate, Robbery_rate, Aggravated_assault_rate, Property_crime_rate, Burglary_rate, Larceny_theft_rate, Motor_vehicle_theft_rate
+FROM Crime.data
+ORDER BY Year ASC
+
+-- Question 4: Do any crime types appear strongly related with each other? For example, does a rise in burglary correlate to an increase in other property crimes? (Crime type relations)
+
+SELECT year, Burglary_rate, Property_crime_rate
+FROM Crime.data
+ORDER BY year ASC
+
+SELECT year, Robbery_rate, Burglary_rate
+FROM Crime.data
+ORDER BY year ASC
+
+SELECT year, Violent_crime_rate, Murder_rate
+FROM Crime.data
+ORDER BY year ASC
+
